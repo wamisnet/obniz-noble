@@ -1,4 +1,7 @@
-var noble = require('./index');
+
+var obnizNoble =  require('./index');
+var noble = obnizNoble("85692135");
+
 
 console.log('noble');
 
@@ -24,13 +27,76 @@ noble.on('scanStop', function() {
 
 noble.on('discover', function(peripheral) {
   console.log('on -> discover: ' + peripheral);
+  if(!peripheral.advertisement.localName
+      || !peripheral.advertisement.localName.startsWith("MESH-100LE1002073")){
+    return;
+  }
+  console.log("find");
 
   noble.stopScanning();
 
-  peripheral.on('connect', function() {
-    console.log('on -> connect');
-    this.updateRssi();
-  });
+  peripheral.connect(function(err) {
+    //
+    // Once the peripheral has been connected, then discover the
+    // services and characteristics of interest.
+    //
+    peripheral.discoverServices(["72C90001-57A9-4D40-B746-534E22EC9F9E"], function(err, services) {
+      services.forEach(function(service) {
+        //
+        // This must be the service we were looking for.
+        //
+        console.log('found service:', service.uuid);
+
+        //
+        // So, discover its characteristics.
+        //
+        service.discoverCharacteristics(["72C90002-57A9-4D40-B746-534E22EC9F9E"], function(err, characteristics) {
+
+          characteristics.forEach(function(characteristic) {
+            //
+            // Loop through each characteristic and match them to the
+            // UUIDs that we know about.
+            //
+            console.log('found characteristic:', characteristic.uuid);
+            characteristic.write(Buffer.from([0x01 ,0x00,0x0c,0x00,0x0c,0x00,0x0c,0x64,0x00,0x64,0x00,0x00,0x00,0x01,0xee]));
+
+            // if (pizzaCrustCharacteristicUuid == characteristic.uuid) {
+            //   pizzaCrustCharacteristic = characteristic;
+            // }
+            // else if (pizzaToppingsCharacteristicUuid == characteristic.uuid) {
+            //   pizzaToppingsCharacteristic = characteristic;
+            // }
+            // else if (pizzaBakeCharacteristicUuid == characteristic.uuid) {
+            //   pizzaBakeCharacteristic = characteristic;
+            // }
+          })
+
+          //
+          // Check to see if we found all of our characteristics.
+          //
+          if (pizzaCrustCharacteristic &&
+              pizzaToppingsCharacteristic &&
+              pizzaBakeCharacteristic) {
+            //
+            // We did, so bake a pizza!
+            //
+            bakePizza();
+          }
+          else {
+            console.log('missing characteristics');
+          }
+        })
+      })
+    })
+  })
+
+
+  //
+  // peripheral.on('connect', function() {
+  //   console.log('on -> connect');
+  //   this.updateRssi();
+  //   // this.discoverServices();
+  // });
 
   peripheral.on('disconnect', function() {
     console.log('on -> disconnect');
@@ -102,14 +168,14 @@ noble.on('discover', function(peripheral) {
       });
 
 
-      characteristics[characteristicIndex].read();
-      //characteristics[characteristicIndex].write(new Buffer('hello'));
+      // characteristics[characteristicIndex].read();
+      // characteristics[characteristicIndex].write(new Buffer([01:00:0c:00:0c:00:0c:64:00:64:00:00:00:01:ee]));
       //characteristics[characteristicIndex].broadcast(true);
       //characteristics[characteristicIndex].notify(true);
       // characteristics[characteristicIndex].discoverDescriptors();
     });
 
-    
+
     services[serviceIndex].discoverIncludedServices();
   });
 

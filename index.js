@@ -1,4 +1,6 @@
 var Noble = require('./lib/noble');
-var bindings = require('./lib/resolve-bindings')();
+var bindings = require('./lib/obniz-hci-socket/bindings');
 
-module.exports = new Noble(bindings);
+module.exports = (obnizId, params)=>{
+  return new Noble(new bindings(obnizId, params));
+}
