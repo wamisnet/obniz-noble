@@ -1,5 +1,5 @@
 
-var noble = require('../..');
+var noble = require('../..')("OBNIZ_ID_HERE");;
 var pizza = require('./pizza');
 
 var pizzaServiceUuid = '13333333333333333333333333333337';
