@@ -6,5 +6,6 @@
   "undef": false, //enable after cleanup
   "globals": {
     "Promise": true
-  }
+  },
+  "esversion" : 6
 }
