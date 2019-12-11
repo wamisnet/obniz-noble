@@ -26,23 +26,41 @@ npm uninstall noble
  
  
  //after
- cosnt noble = require("obniz-noble")("OBNIZ_ID_HERE");
+ const obnizNoble = require("obniz-noble")
+ cosnt noble = obnizNoble("OBNIZ_ID_HERE");
 
 ```
 
 3. Setup obniz device and run your script!
 
-## Install
+## Install & Usage
+
+For node.js
 
 ```sh
 npm install obniz-noble
 ```
 
-## Usage
 
 ```javascript
-var noble = require('obniz-noble')("OBNIZ_ID_HERE")
+var obnizNoble = require('obniz-noble')
+var noble = obnizNoble("OBNIZ_ID_HERE")
 ```
+
+
+
+
+For browser 
+
+```html
+<script src="https://unpkg.com/obniz-noble/obniz-noble.js" crossorigin="anonymous"></script>
+
+<script>
+   var noble = obnizNoble("OBNIZ_ID_HERE")
+   ...
+</script>
+```
+
 
 ### Actions
 
