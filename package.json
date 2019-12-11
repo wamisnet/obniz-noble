@@ -40,15 +40,19 @@
   "optionalDependencies": {},
   "devDependencies": {
     "jshint": "latest",
+    "json-loader": "^0.5.7",
     "mocha": "~1.8.2",
     "should": "~1.2.2",
     "sinon": "~1.6.0",
-    "async": "~0.2.9",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-node-externals": "^1.7.2",
     "ws": "~0.4.31"
   },
   "scripts": {
     "pretest": "jshint *.js lib/. test/.",
-    "test": "mocha -R spec test/*.js"
+    "test": "mocha -R spec test/*.js",
+    "build": "webpack"
   },
   "browser": {
     "./lib/resolve-bindings.js": "./lib/resolve-bindings-web.js"
