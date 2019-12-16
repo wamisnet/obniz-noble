@@ -1,8 +1,5 @@
 {
-  "author": "Sandeep Mistry",
   "maintainers": [
-    "Jacob Rosenthal",
-    "Luis Montes"
   ],
   "license": "MIT",
   "name": "obniz-noble",
