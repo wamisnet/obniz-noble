@@ -1,10 +1,9 @@
 {
-  "maintainers": [
-  ],
+  "maintainers": [],
   "license": "MIT",
   "name": "obniz-noble",
   "description": "A Node.js BLE (Bluetooth Low Energy) central library for obniz.",
-  "version": "0.9.0",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/obniz/noble.git"
