@@ -6,7 +6,7 @@
 
   based on code provided by: Mattias Ask (http://www.dittlof.com)
 */
-var noble = require('../index');
+var noble = require('../index')("OBNIZ_ID_HERE");;
 
 var RSSI_THRESHOLD    = -90;
 var EXIT_GRACE_PERIOD = 2000; // milliseconds
