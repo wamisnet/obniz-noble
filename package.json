@@ -30,6 +30,7 @@
     "win32"
   ],
   "dependencies": {
+    "@types/noble": "0.0.39",
     "debug": "~2.2.0",
     "obniz": "~3.0.0"
   },
