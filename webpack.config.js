@@ -10,6 +10,7 @@ module.exports = {
 
     library: 'obnizNoble',
   },
+  devtool: 'none',
   module: {
     rules: [
       {
