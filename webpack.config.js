@@ -8,8 +8,9 @@ module.exports = {
     filename: 'obniz-noble.js',
     path: path.join(__dirname),
 
-    library: 'ObnizNoble',
+    library: 'obnizNoble',
   },
+  devtool: 'none',
   module: {
     rules: [
       {
